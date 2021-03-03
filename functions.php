@@ -84,23 +84,23 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
         // регистрация нового типа записей
         add_action( 'init', 'register_post_types' );
         function register_post_types(){
-            register_post_type( 'videolesson', [
+            register_post_type( 'magazine', [
                 'label'  => null,
                 'labels' => [
-                    'name'               => __( 'Videolessons', 'universal' ), // основное название для типа записи
-                    'singular_name'      => __( 'Videolesson', 'universal' ), // название для одной записи этого типа
-                    'add_new'            => __( 'Add videolesson', 'universal' ), // для добавления новой записи
-                    'add_new_item'       => __( 'Add new videolesson', 'universal' ), // заголовка у вновь создаваемой записи в админ-панели.
-                    'edit_item'          => __( 'Edit videolesson', 'universal' ), // для редактирования типа записи
-                    'new_item'           => __( 'New videolesson', 'universal' ), // текст новой записи
-                    'view_item'          => __( 'View videolesson', 'universal' ), // для просмотра записи этого типа.
-                    'search_items'       => __( 'Search videolesson', 'universal' ), // для поиска по этим типам записи
-                    'not_found'          => __( 'Not found', 'universal' ), // если в результате поиска ничего не было найдено
-                    'not_found_in_trash' => __( 'Not found in trash', 'universal' ), // если не было найдено в корзине
+                    'name'               => __( 'Magazine', 'universal' ), // основное название для типа записи
+                    'singular_name'      => __( 'Magazine', 'universal' ), // название для одной записи этого типа
+                    'add_new'            => __( 'Add magazine', 'universal' ), // для добавления новой записи
+                    'add_new_item'       => __( 'Add new magazine', 'universal' ), // заголовка у вновь создаваемой записи в админ-панели.
+                    'edit_item'          => __( 'Edit magazine', 'universal' ), // для редактирования типа записи
+                    'new_item'           => __( 'New magazine', 'universal' ), // текст новой записи
+                    'view_item'          => __( 'View magazine', 'universal' ), // для просмотра записи этого типа.
+                    'search_items'       => __( 'Search magazine', 'universal' ), // для поиска по этим типам записи
+                    'not_found'          => __( 'Not found', 'worldmonitor' ), // если в результате поиска ничего не было найдено
+                    'not_found_in_trash' => __( 'Not found in trash', 'worldmonitor' ), // если не было найдено в корзине
                     'parent_item_colon'  => '', // для родителей (у древовидных типов)
-                    'menu_name'          => __( 'Videolessons', 'universal' ), // название меню
+                    'menu_name'          => __( 'Magazine', 'worldmonitor' ), // название меню
                 ],
-                'description'         => __( 'Part with videolesson', 'universal' ),
+                'description'         => __( 'Part with Magazine', 'worldmonitor' ),
                 'public'              => true,
                 'show_admin_column'   => true,
                 // 'publicly_queryable'  => null, // зависит от public
@@ -112,7 +112,7 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
                 'show_in_rest'        => true, // добавить в REST API. C WP 4.7
                 'rest_base'           => null, // $post_type. C WP 4.7
                 'menu_position'       => 5,
-                'menu_icon'           => 'dashicons-video-alt2',
+                'menu_icon'           => 'dashicons-media-interactive',
                 'capability_type'   => 'post',
                 //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
                 //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
@@ -127,26 +127,26 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
 
         // хук, через который подключается функция
         // регистрирующая новые таксономии (create_book_taxonomies)
-        add_action( 'init', 'create_videolesson_taxonomies' );
+        add_action( 'init', 'create_magazine_taxonomies' );
 
         // функция, создающая 2 новые таксономии "genres" и "writers" для постов типа "book"
-        function create_videolesson_taxonomies(){
+        function create_magazine_taxonomies(){
 
             // Добавляем древовидную таксономию 'genre' (как категории)
-            register_taxonomy('type', array('videolesson'), array(
+            register_taxonomy('type', array('magazine'), array(
                 'hierarchical'  => true,
                 'labels'        => array(
-                    'name'              => _x( 'Type', 'taxonomy general name', 'universal' ),
-                    'singular_name'     => _x( 'Type', 'taxonomy singular name', 'universal' ),
-                    'search_items'      =>  __( 'Search Type', 'universal' ),
-                    'all_items'         => __( 'All Type', 'universal' ),
-                    'parent_item'       => __( 'Parent Type', 'universal' ),
-                    'parent_item_colon' => __( 'Parent Type:', 'universal' ),
-                    'edit_item'         => __( 'Edit Type', 'universal' ),
-                    'update_item'       => __( 'Update Type', 'universal' ),
-                    'add_new_item'      => __( 'Add New Type', 'universal' ),
-                    'new_item_name'     => __( 'New Type Name', 'universal' ),
-                    'menu_name'         => __( 'Type', 'universal' ),
+                    'name'              => _x( 'Type', 'taxonomy general name', 'worldmonitor' ),
+                    'singular_name'     => _x( 'Type', 'taxonomy singular name', 'worldmonitor' ),
+                    'search_items'      =>  __( 'Search Type', 'worldmonitor' ),
+                    'all_items'         => __( 'All Type', 'worldmonitor' ),
+                    'parent_item'       => __( 'Parent Type', 'worldmonitor' ),
+                    'parent_item_colon' => __( 'Parent Type:', 'worldmonitor' ),
+                    'edit_item'         => __( 'Edit Type', 'worldmonitor' ),
+                    'update_item'       => __( 'Update Type', 'worldmonitor' ),
+                    'add_new_item'      => __( 'Add New Type', 'worldmonitor' ),
+                    'new_item_name'     => __( 'New Type Name', 'worldmonitor' ),
+                    'menu_name'         => __( 'Type', 'worldmonitor' ),
                 ),
                 // показывать ли это в меню
                 'show_ui'       => true,
@@ -156,24 +156,24 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
             ));
 
             // Добавляем НЕ древовидную таксономию 'writer' (как метки)
-            register_taxonomy('teacher', 'videolesson',array(
+            register_taxonomy('teacher', 'magazine',array(
                 'hierarchical'  => false,
                 'labels'        => array(
-                    'name'                        => _x( 'Teacher', 'taxonomy general name', 'universal' ),
-                    'singular_name'               => _x( 'Teacher', 'taxonomy singular name', 'universal' ),
-                    'search_items'                =>  __( 'Search Teachers', 'universal' ),
-                    'popular_items'               => __( 'Popular Teachers', 'universal' ),
-                    'all_items'                   => __( 'All Teachers', 'universal' ),
+                    'name'                        => _x( 'Teacher', 'taxonomy general name', 'worldmonitor' ),
+                    'singular_name'               => _x( 'Teacher', 'taxonomy singular name', 'worldmonitor' ),
+                    'search_items'                =>  __( 'Search Teachers', 'worldmonitor' ),
+                    'popular_items'               => __( 'Popular Teachers', 'worldmonitor' ),
+                    'all_items'                   => __( 'All Teachers', 'worldmonitor' ),
                     'parent_item'                 => null,
                     'parent_item_colon'           => null,
-                    'edit_item'                   => __( 'Edit Teacher', 'universal' ),
-                    'update_item'                 => __( 'Update Teacher', 'universal' ),
-                    'add_new_item'                => __( 'Add New Teacher', 'universal' ),
-                    'new_item_name'               => __( 'New Teacher Name', 'universal' ),
-                    'separate_items_with_commas'  => __( 'Separate Teacher with commas', 'universal' ),
-                    'add_or_remove_items'         => __( 'Add or remove teacher', 'universal' ),
-                    'choose_from_most_used'       => __( 'Choose from the most used teachers', 'universal' ),
-                    'menu_name'                   => __( 'Teachers', 'universal' ),
+                    'edit_item'                   => __( 'Edit Teacher', 'worldmonitor' ),
+                    'update_item'                 => __( 'Update Teacher', 'worldmonitor' ),
+                    'add_new_item'                => __( 'Add New Teacher', 'worldmonitor' ),
+                    'new_item_name'               => __( 'New Teacher Name', 'worldmonitor' ),
+                    'separate_items_with_commas'  => __( 'Separate Teacher with commas', 'worldmonitor' ),
+                    'add_or_remove_items'         => __( 'Add or remove teacher', 'worldmonitor' ),
+                    'choose_from_most_used'       => __( 'Choose from the most used teachers', 'worldmonitor' ),
+                    'menu_name'                   => __( 'Teachers', 'worldmonitor' ),
                 ),
                 'show_ui'       => true,
                 'query_var'     => true,
@@ -191,20 +191,64 @@ add_action( 'after_setup_theme', 'worldmonitor_setup' );
  */
 function worldmonitor_scripts() {
 	wp_enqueue_style( 'worldmonitor-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'worldmonitor-style', 'rtl', 'replace' );
+    wp_enqueue_style( 'worldmonitor-awesome', get_template_directory_uri() . '/assets/plugin/fontAwesome/all.css');
+    wp_enqueue_style( 'worldmonitor-swiper', get_template_directory_uri() . '/assets/plugin/swiper/swiper-bundle.min.css');
+    wp_enqueue_style( 'worldmonitor-theme', get_template_directory_uri() . '/assets/css/style.css');
 
-	wp_enqueue_script( 'worldmonitor-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    wp_deregister_script( 'jquery-core' );
+    wp_register_script( 'jquery-core', '//code.jquery.com/jquery-3.5.1.min.js');
+    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/plugin/swiper/swiper-bundle.min.js', null, true);
+    wp_enqueue_script( 'fontAwesome', get_template_directory_uri() . '/assets/plugin/fontAwesome/all.js', null, true);
+    wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/main.js', 'swiper', true);
 }
 add_action( 'wp_enqueue_scripts', 'worldmonitor_scripts' );
+
+## фильтр для облака тэгов, изменяем настройки облака тэгов
+add_filter( 'widget_tag_cloud_args', 'edit_widget_tag_cloud_args');
+function edit_widget_tag_cloud_args($args) {
+    $args['unit'] = 'px';
+    $args['smallest'] = '14';
+    $args['largest'] = '14';
+    $args['number'] = '11';
+    // сортировка по кол-ву повторений тега
+    $args['orderby'] = 'count';
+    return $args;
+}
+
+## отключаем создание миниатюр файлов для указанных размеров
+add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
+function delete_intermediate_image_sizes( $sizes ){
+    // размеры которые нужно удалить
+    return array_diff( $sizes, [
+        'medium_large',
+        'large',
+        '1536x1536',
+        '2048x2048',
+    ] );
+}
+
+// меняем стиль многоточие в отрывках
+add_filter('excerpt_more', function($more) {
+    return '...';
+});
+
+// склоняем слова после числительных
+function plural_form($number, $after) {
+    $cases = array (2, 0, 1, 1, 1, 2);
+    echo $number.' '.$after[ ($number%100>4 && $number%100<20)? 2: $cases[min($number%10, 5)] ];
+}
 
 /**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Подключаем зоны для сайтбара
+ */
+
+require get_template_directory() . '/inc/widget_zone.php';
 
 /**
  * Custom template tags for this theme.

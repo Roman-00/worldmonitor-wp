@@ -21,28 +21,57 @@
 * 1. Correct the line height in all browsers.
 * 2. Prevent adjustments of font size after orientation changes in iOS.
 */
-html {
-	line-height: 1.15;
-	-webkit-text-size-adjust: 100%;
-}
 
 /* Sections
 	 ========================================================================== */
 
 /**
  * Remove the margin in all browsers.
- */
-body {
-	margin: 0;
-}
 
 /**
  * Render the `main` element consistently in IE.
  */
-main {
-	display: block;
-}
 
+.new__stick {
+	color: #C1C1EE; }
+
+.container {
+	width: 80%;
+	max-width: 1670px;
+	margin: auto; }
+
+*, *:before, *:after {
+	box-sizing: border-box; }
+
+*, *:before, *:after *:active *:focus *:hover {
+	outline: 0;
+	outline-offset: 0; }
+
+html {
+	font-size: 14px; }
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
+	overflow-x: hidden !important;
+	font-family: 'Pfagora Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 1rem; }
+
+img {
+	max-width: 100%;
+	height: auto; }
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0; }
+
+
+#wpadminbar .ab-empty-item, #wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon {
+	color: #eee !important;
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.
@@ -82,6 +111,7 @@ pre {
  */
 a {
 	background-color: transparent;
+	color: #222223 !important;
 }
 
 /**
@@ -148,6 +178,8 @@ sup {
  */
 img {
 	border-style: none;
+	max-width: 100%;
+	height: auto;
 }
 
 /* Forms
@@ -428,6 +460,7 @@ big {
 --------------------------------------------- */
 body {
 	background: #fff;
+	color: #000000;
 }
 
 hr {
@@ -437,13 +470,8 @@ hr {
 	margin-bottom: 1.5em;
 }
 
-ul,
-ol {
-	margin: 0 0 1.5em 3em;
-}
-
 ul {
-	list-style: disc;
+	list-style: none;
 }
 
 ol {
@@ -488,17 +516,17 @@ table {
 /* Links
 --------------------------------------------- */
 a {
-	color: #4169e1;
+	transition: .2s ease;
 }
 
 a:visited {
-	color: #800080;
+	color: #000055;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #191970;
+	color: #000055 !important;
 }
 
 a:focus {
@@ -922,3 +950,64 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+.logo-name {
+	display: none;
+}
+
+/* Меню  */
+
+.menu__nav .menu-item {
+	position: relative;
+	font-family: 'Pfagora Sans Pro', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 22px;
+	color: #000000;
+	text-transform: uppercase;
+	transition: .2s ease;
+}
+
+.menu-item::after {
+	content: '';
+	position: absolute;
+	top: -18px;
+	left: 50%;
+	width: 0%;
+	height: 2px;
+	display: block;
+	margin-top: 54px;
+	-webkit-transition: width 0.3s ease-in-out;
+	-moz-transition: width .3s ease-in-out;
+	transition: width .3s ease-in-out;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	transform: traanslateX(-50%);
+	background: #000055;
+}
+
+.menu-item:hover:after,
+.menu-item:focus:after {
+	width: 100%;
+}
+
+.sub-menu {
+	position: absolute;
+	margin-top: 20px;
+	margin-left: -3px;
+	display: none;
+	overflow: hidden;
+	background: #fff;
+	min-width: 230%;
+	padding: 10px;
+	box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+	z-index: 5;
+}
+
+/* Меню */
+
+/*Верхний сайтбар*/
+.top__ad section img {
+	width: 100% !important;
+}
+/*Верхний сайтбар*/
