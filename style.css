@@ -478,12 +478,6 @@ ol {
 	list-style: decimal;
 }
 
-li > ul,
-li > ol {
-	margin-bottom: 0;
-	margin-left: 1.5em;
-}
-
 dt {
 	font-weight: 700;
 }
@@ -968,41 +962,6 @@ textarea {
 	transition: .2s ease;
 }
 
-.menu-item::after {
-	content: '';
-	position: absolute;
-	top: -18px;
-	left: 50%;
-	width: 0%;
-	height: 2px;
-	display: block;
-	margin-top: 54px;
-	-webkit-transition: width 0.3s ease-in-out;
-	-moz-transition: width .3s ease-in-out;
-	transition: width .3s ease-in-out;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	transform: traanslateX(-50%);
-	background: #000055;
-}
-
-.menu-item:hover:after,
-.menu-item:focus:after {
-	width: 100%;
-}
-
-.sub-menu {
-	position: absolute;
-	margin-top: 20px;
-	margin-left: -3px;
-	display: none;
-	overflow: hidden;
-	background: #fff;
-	min-width: 230%;
-	padding: 10px;
-	box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
-	z-index: 5;
-}
 
 /* Меню */
 
@@ -1020,4 +979,61 @@ textarea {
 
 .news__post--data {
 	width: 100%;
+}
+
+.open {
+	display: block;
+}
+
+#menu-header_menu .menu-item {
+	margin-bottom: 15px;
+	padding-right: 30px;
+}
+
+#menu-header_menu .menu-item .sub-menu {
+	position: absolute;
+	left: 0;
+	top: 40px;
+	display: none;
+	width: 300px;
+	padding: 20px;
+	background: #fff;
+	box-shadow: 5px 5px 50px rgba(0, 0, 85, 0.5);
+}
+
+#menu-header_menu .menu-item .sub-menu .menu-item a {
+	position: relative;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+#menu-header_menu .menu-item .sub-menu .menu-item {
+	margin-bottom: 5px;
+}
+
+#menu-header_menu .menu-item .sub-menu .menu-item .sub-menu {
+	position: static;
+	display: none;
+	padding: 0 !important;
+	width: auto !important;
+	background: transparent;
+	box-shadow: none;
+	margin: 5px 0 0 10px;
+}
+
+#menu-header_menu .menu-item .sub-menu .menu-item .sub-menu .menu-item a {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 20px;
+	text-transform: capitalize;
+}
+
+#menu-footer_menu {
+	padding: 0;
+	margin: 0;
+}
+
+#menu-footer_menu .menu-item a {
+	color: #fff !important;
 }

@@ -112,4 +112,12 @@ $(document).ready(function () {
     $('.submenu__item--select').on('click', function() {
         $('.submenu__item--select').siblings('.nav__item--submenu-2').slideToggle();
     });
+
+    $('#menu-header_menu .menu-item a').on('click', function (e) {
+        if($(this).siblings().hasClass('sub-menu')){
+            e.preventDefault()
+        }
+        $(this).siblings('.sub-menu').slideToggle();
+    });
+
 });

@@ -401,7 +401,7 @@ template {
   left: 0;
   top: 0;
   width: 100%;
-  padding: 25px 0;
+  padding: 0 0 25px 0;
   background: #fff;
   z-index: 99; }
   .header__interface {
@@ -534,7 +534,8 @@ template {
 .nav {
   display: flex;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  margin-bottom: 0;}
   .nav__item {
     position: relative;
     display: flex;
@@ -730,7 +731,7 @@ template {
       grid-column: 1/3; }
     .article__grid--item-1 {
       display: flex;
-      min-height: 270px;
+      height: 270px;
       max-width: 450px;
       padding: 20px;
       border-radius: 10px;
@@ -758,12 +759,13 @@ template {
         font-size: 16px;
         line-height: 19px; }
       .article__grid--item-1 .category__name {
-        margin-bottom: 80px;
+        margin-bottom: 50px;
         color: #C1C1EE; }
       .article__grid--item-1 .view {
         margin-left: auto;
         margin-right: 25px; }
     .article__grid--item-2 {
+      display: flex;
       min-height: 270px;
       max-width: 230px;
       padding: 15px;

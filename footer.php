@@ -41,9 +41,18 @@
                     World monitor
                 </h2>
                 <nav class="footer__nav menu__footer--nav">
-                    <a href="#" class="footer__nav--item">
+                    <?php
+                    wp_nav_menu( [
+                        'theme_location'  => 'footer_menu',
+                        'container'       => 'nav',
+                        'container_class' => 'footer-nav',
+                        'menu_class'      => 'footer__nav--item',
+                        'echo'            => true,
+                    ] );
+                    ?>
+                    <!-- a href="#" class="">
                         О нас
-                    </a>
+                    </a -->
                 </nav>
             </div>
 
