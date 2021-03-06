@@ -265,6 +265,12 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/breadcrumbs.php';
 
 /**
+ * Подключаем счетчик постов!
+ */
+
+require get_template_directory() . '/inc/views-post.php';
+
+/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
