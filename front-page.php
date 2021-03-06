@@ -7,7 +7,6 @@
 
             <div class="main__grid">
 
-
                 <div class="article__grid">
                     <?php
                     global $post;
@@ -274,74 +273,55 @@
                 </div>
 
                 <div class="article__grid article__grid--mb">
-                    <?php
-                        // объявляем глобальную переменную
-                        global $post;
-                        // добавляем параметры по которым будут выводиться посты
-                        $myposts = get_posts([
-                                'numberposts' => 1,
-                                'category_name' => 'news',
-                                //'tag' => 'Актуальное',
-                        ]);
-                        // проверяем есть ли посты
-                        if( $myposts ) {
-                            //если есть запускаем цикл для перебора
-                            foreach ( $myposts as $post ) {
-                                setup_postdata( $post );
-                                ?>
-                                 <div class="swiper-container article--swiper-mb">
-                                     <div class="swiper-wrapper">
-                                         <div class="swiper-slide">
-                                             <div class="article__grid--item-mb" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(64, 48, 61, 0.35)), url(<?php if( has_post_thumbnail() ) {
-                                                 echo get_the_post_thumbnail_url();
-                                             } else {
-                                                 echo get_template_directory_uri().'./assets/img/image-default.png';
-                                             }?>) no-repeat center center / cover">
-                                                 <a href="<?php echo the_permalink() ?>" class="article__grid--permalink-mb">
-                                                     <span class="category__name category__name--news">
-                                                        <?php $category = get_the_category(); echo $category[0]->name; ?>
-                                                     </span>
-                                                     <h4 class="article__grid--title">
-                                                         <?php echo mb_strimwidth(get_the_title(), 0, 13, '...'); ?>
-                                                     </h4>
-                                                     <p class="article__grid--excerpt">
-                                                         <?php echo mb_strimwidth(get_the_excerpt(), 0, 40, '...'); ?>
-                                                     </p>
-                                                     <div class="article__grid--info">
 
-                                                         <div class="author">
-                                                             <?php $author_id = get_the_author_meta('ID');?>
-                                                             <img src="<?php echo get_avatar_url($author_id);?>" alt="Автор" class="author__avatar">
-                                                             <span class="author__name">
-                                                              <strong><? the_author(); ?></strong>
-                                                            </span>
-                                                         </div>
+                    <div class="swiper-container article--swiper-mb">
 
-                                                         <div class="view">
-                                                             <i class="far fa-eye"></i>
-                                                             <span class="view__count">
-                                                                <?php echo get_post_meta( $post->ID, 'views', true ); ?>
-                                                             </span>
-                                                         </div>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="article__grid--item-mb" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(64, 48, 61, 0.35)), url('img/MinFin.jpg') no-repeat center center / cover">
 
-                                                         <!-- div class="favorite">
-                                                             <i class="far fa-heart"></i>
-                                                         </div -->
-                                                     </div>
-                                                 </a>
+                                    <a href="detail.html" class="article__grid--permalink-mb">
 
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
-                                <?php
-                            }
-                        } else {
-                                // Постов не найдено
-                                ?> <p><?php _e('No posts', 'universal')?></p> <?php
-                        }
-                        wp_reset_postdata(); // Сбрасываем $post
-                    ?>
+                        <span class="category__name category__name--news">
+                          Новости
+                        </span>
+
+                                        <h4 class="article__grid--title">
+                                            Бюджет, внешние рынки и ...
+                                        </h4>
+
+                                        <p class="article__grid--excerpt">
+                                            Правительством предприняты беспрецедентные меры поддержки граждан РК ...
+                                        </p>
+
+                                        <div class="article__grid--info">
+
+                                            <div class="author">
+                                                <img src="img/author.png" alt="Автор" class="author__avatar">
+                                                <span class="author__name">
+                              <strong>Инна Квашова</strong>
+                            </span>
+                                            </div>
+
+                                            <div class="view">
+                                                <i class="far fa-eye"></i>
+                                                <span class="view__count">
+                              365
+                            </span>
+                                            </div>
+
+                                            <div class="favorite">
+                                                <i class="far fa-heart"></i>
+                                            </div>
+                                        </div>
+
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <h2 class="article__grid--mb-title">
                         Новости
