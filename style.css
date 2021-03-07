@@ -1037,3 +1037,7 @@ textarea {
 #menu-footer_menu .menu-item a {
 	color: #fff !important;
 }
+
+.open {
+	display: block !important;
+}

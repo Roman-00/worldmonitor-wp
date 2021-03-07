@@ -367,16 +367,16 @@
                                     <div class="article__card--grid--info">
 
                                         <div class="article__card--author--mb">
-                          <span class="article__card--author--author">
-                            <strong>Инна Квашова</strong>
-                          </span>
+                                          <span class="article__card--author--author">
+                                            <strong>Инна Квашова</strong>
+                                          </span>
                                         </div>
 
                                         <div class="view">
                                             <i class="far fa-eye"></i>
                                             <span class="view__count">
-                            365
-                          </span>
+                                                365
+                                            </span>
                                         </div>
 
                                         <div class="favorite">
