@@ -43,7 +43,7 @@
                                                  <?php $category = get_the_category(); echo $category[0]->name;?>
                                             </span>
                                             <h4 class="article__grid--title">
-                                                <?php echo get_the_title(); ?>
+                                                <?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
                                             </h4>
                                             <p class="article__grid--excerpt">
                                                 <?php echo mb_strimwidth(get_the_excerpt(), 0, 87, '...'); ?>
@@ -456,71 +456,73 @@
 
                 <div class="block__magazine">
 
-                    <div class="block__magazine--item" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(64, 48, 61, 0.35)), url('img/img-magazine.jpg') no-repeat center center / cover">
+                    <?php
+                        // объявляем глобальную переменую
+                        global $post;
+                        // параметры вывода постов
+                        $myposts = get_posts([
+                            'numberposts' => 1,
+                            'post_type'   => 'magazine',
+                        ]);
+                        // проверяем есть ли посты?
+                        if ( $myposts ) {
+                            // если есть, запускаем цикл для перебора
+                            foreach ( $myposts as $post) {
+                                setup_postdata( $post );
+                                ?>
+                                <div class="block__magazine--item" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(64, 48, 61, 0.35)), url(<?php if( has_post_thumbnail() ) {
+                                        echo get_the_post_thumbnail_url();
+                                    } else {
+                                        echo get_template_directory_uri().'./assets/img/image-default.png';
+                                    }?>) no-repeat center center / cover">
 
-                        <div class="block__magazine--permalink">
+                                    <div class="block__magazine--permalink">
 
-                            <div class="block__magazine--info">
+                                        <div class="block__magazine--info">
 
-                                <div class="author">
-                                    <img src="img/author.png" alt="Автор" class="author__avatar">
-                                    <span class="author__name">
-                          <strong>Инна Квашова</strong>
-                        </span>
+                                            <div class="author">
+                                                <?php $author_id = get_the_author_meta('ID');?>
+                                                <img src="<?php echo get_avatar_url($author_id);?>" alt="Автор" class="author__avatar">
+                                                <span class="author__name">
+                                                  <strong><? the_author(); ?></strong>
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="block__magazine--button">
+                                            <span class="tag">
+                                              Свежий выпуск
+                                            </span>
+                                            <a href="<?php the_field('link_view_joomag')?>" class="block__magazine--button-btn">
+                                                Читать далее <i class="fas fa-long-arrow-alt-right"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
-
-                            <div class="block__magazine--button">
-                    <span class="tag">
-                      Свежий выпуск
-                    </span>
-                                <a href="#" class="block__magazine--button-btn">
-                                    Читать далее <i class="fas fa-long-arrow-alt-right"></i>
+                                <a href="<?php the_field('link_archive_magazine')?>" class="archive__btn">
+                                    <span class="archive__btn--image">
+                                      <i class="fas fa-archive"></i>
+                                    </span>
+                                    <span class="archive__btn--text">
+                                     <?php the_field('text_link_btn_archive')?>
+                                    </span>
                                 </a>
-                            </div>
+                                <?php
+                            }
+                        } else {
+                            // Постов не найдено
+                            ?> <p><?php _e('No posts', 'worldmonitor')?></p> <?php
+                        }
 
-                        </div>
-
-                    </div>
-
-                    <a href="archive.html" class="archive__btn">
-                <span class="archive__btn--image">
-                  <i class="fas fa-archive"></i>
-                </span>
-                        <span class="archive__btn--text">
-                  Перейти в Архив
-                </span>
-                    </a>
+                        wp_reset_postdata(); // Сбрасываем $post
+                    ?>
 
                 </div>
 
-                <aside id="secondary" class="sidebar__front--page">
-                    <img src="img/add.jpg" alt="" class="aside-ad">
-
-                    <a href="archive.html" class="archive__btn archive__btn--mb">
-                  <span class="archive__btn--image">
-                    <i class="fas fa-archive"></i>
-                  </span>
-                        <span class="archive__btn--text">
-                    Перейти в Архив
-                  </span>
-                    </a>
-
-                    <a href="http://www.eurobak.kz/" target="_blank" class="website">
-                  <span class="website__image">
-                    <i class="fas fa-globe"></i>
-                  </span>
-                        <div class="website__info">
-                    <span class="website__info--desc">
-                      Official e-magazine
-                    </span>
-                            <span class="website__info--title">
-                      EUROBAK.KZ
-                    </span>
-                        </div>
-                    </a>
-                </aside>
+                <?php get_sidebar('front-page'); ?>
 
             </div>
 

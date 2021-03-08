@@ -63,7 +63,7 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
         add_theme_support('title-tag');
 
         // Добавляем возможность делать миниатюры изобраджений для статей
-        add_theme_support('post-thumbnails', array('post'));
+        add_theme_support('post-thumbnails', array('post', 'magazine', 'partners'));
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -87,20 +87,20 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
             register_post_type( 'magazine', [
                 'label'  => null,
                 'labels' => [
-                    'name'               => __( 'Magazine', 'universal' ), // основное название для типа записи
-                    'singular_name'      => __( 'Magazine', 'universal' ), // название для одной записи этого типа
-                    'add_new'            => __( 'Add magazine', 'universal' ), // для добавления новой записи
-                    'add_new_item'       => __( 'Add new magazine', 'universal' ), // заголовка у вновь создаваемой записи в админ-панели.
-                    'edit_item'          => __( 'Edit magazine', 'universal' ), // для редактирования типа записи
-                    'new_item'           => __( 'New magazine', 'universal' ), // текст новой записи
-                    'view_item'          => __( 'View magazine', 'universal' ), // для просмотра записи этого типа.
-                    'search_items'       => __( 'Search magazine', 'universal' ), // для поиска по этим типам записи
-                    'not_found'          => __( 'Not found', 'worldmonitor' ), // если в результате поиска ничего не было найдено
-                    'not_found_in_trash' => __( 'Not found in trash', 'worldmonitor' ), // если не было найдено в корзине
+                    'name'               => __( 'Журнал', 'worldmonitor' ), // основное название для типа записи
+                    'singular_name'      => __( 'Журнал', 'worldmonitor' ), // название для одной записи этого типа
+                    'add_new'            => __( 'Добавить Журнал', 'worldmonitor' ), // для добавления новой записи
+                    'add_new_item'       => __( 'Добавление Журнала', 'worldmonitor' ), // заголовка у вновь создаваемой записи в админ-панели.
+                    'edit_item'          => __( 'Редактировать Журнал', 'worldmonitor' ), // для редактирования типа записи
+                    'new_item'           => __( 'Новый Журнал', 'worldmonitor' ), // текст новой записи
+                    'view_item'          => __( 'Посмотреть Журнал', 'worldmonitor' ), // для просмотра записи этого типа.
+                    'search_items'       => __( 'Искать Журнал', 'worldmonitor' ), // для поиска по этим типам записи
+                    'not_found'          => __( 'Не найдено', 'worldmonitor' ), // если в результате поиска ничего не было найдено
+                    'not_found_in_trash' => __( 'Не найдено в корзине', 'worldmonitor' ), // если не было найдено в корзине
                     'parent_item_colon'  => '', // для родителей (у древовидных типов)
-                    'menu_name'          => __( 'Magazine', 'worldmonitor' ), // название меню
+                    'menu_name'          => __( 'Журнал', 'worldmonitor' ), // название меню
                 ],
-                'description'         => __( 'Part with Magazine', 'worldmonitor' ),
+                'description'         => __( 'Part with videolesson', 'worldmonitor' ),
                 'public'              => true,
                 'show_admin_column'   => true,
                 // 'publicly_queryable'  => null, // зависит от public
@@ -112,75 +112,93 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
                 'show_in_rest'        => true, // добавить в REST API. C WP 4.7
                 'rest_base'           => null, // $post_type. C WP 4.7
                 'menu_position'       => 5,
-                'menu_icon'           => 'dashicons-media-interactive',
+                'menu_icon'           => 'dashicons-media-document',
                 'capability_type'   => 'post',
                 //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
                 //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
                 'hierarchical'        => false,
                 'supports'            => [ 'title', 'editor', 'thumbnail', 'custom-fields', 'excerpt', 'custom-fields', 'author' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-                'taxonomies'          => [],
+                'taxonomies'          => ['reliase'],
                 'has_archive'         => true,
                 'rewrite'             => true,
                 'query_var'           => true,
             ] );
         }
+        // хук для регистрации
+        add_action( 'init', 'create_magazine_taxonomy' );
+        function create_magazine_taxonomy(){
+            register_taxonomy( 'reliase', [ 'magazine' ], [
+                'label'                 => '', // определяется параметром $labels->name
+                'labels'                => [
+                    'name'              => 'Выпуск',
+                    'singular_name'     => 'Выпуск',
+                    'search_items'      => 'Найти Выпуск',
+                    'all_items'         => 'Все Выпуски',
+                    'view_item '        => 'Посмотреть Выпуск',
+                    'parent_item'       => 'Родительский Выпуск',
+                    'parent_item_colon' => 'Родительский Выпуск',
+                    'edit_item'         => 'Редактировать Выпуск',
+                    'update_item'       => 'Обновить Выпуск',
+                    'add_new_item'      => 'Добавить новый Выпуск',
+                    'new_item_name'     => 'Выпуск',
+                    'menu_name'         => 'Выпуск',
+                ],
+                'description'           => 'Выпуск Журнала', // описание таксономии
+                'public'                => true,
+                'publicly_queryable'    => true, // равен аргументу public
+                'show_in_nav_menus'     => true, // равен аргументу public
+                'show_ui'               => true, // равен аргументу public
+                'show_in_menu'          => true, // равен аргументу show_ui
+                'show_tagcloud'         => true, // равен аргументу show_ui
+                'show_in_quick_edit'    => true, // равен аргументу show_ui
+                'hierarchical'          => false,
+                'rewrite'               => array( 'slug' => 'reliase' ),
+                'show_in_rest'          => true
+            ] );
+        }
 
-        // хук, через который подключается функция
-        // регистрирующая новые таксономии (create_book_taxonomies)
-        add_action( 'init', 'create_magazine_taxonomies' );
-
-        // функция, создающая 2 новые таксономии "genres" и "writers" для постов типа "book"
-        function create_magazine_taxonomies(){
-
-            // Добавляем древовидную таксономию 'genre' (как категории)
-            register_taxonomy('type', array('magazine'), array(
-                'hierarchical'  => true,
-                'labels'        => array(
-                    'name'              => _x( 'Type', 'taxonomy general name', 'worldmonitor' ),
-                    'singular_name'     => _x( 'Type', 'taxonomy singular name', 'worldmonitor' ),
-                    'search_items'      =>  __( 'Search Type', 'worldmonitor' ),
-                    'all_items'         => __( 'All Type', 'worldmonitor' ),
-                    'parent_item'       => __( 'Parent Type', 'worldmonitor' ),
-                    'parent_item_colon' => __( 'Parent Type:', 'worldmonitor' ),
-                    'edit_item'         => __( 'Edit Type', 'worldmonitor' ),
-                    'update_item'       => __( 'Update Type', 'worldmonitor' ),
-                    'add_new_item'      => __( 'Add New Type', 'worldmonitor' ),
-                    'new_item_name'     => __( 'New Type Name', 'worldmonitor' ),
-                    'menu_name'         => __( 'Type', 'worldmonitor' ),
-                ),
-                // показывать ли это в меню
-                'show_ui'       => true,
-                'query_var'     => true,
-                'rewrite'       => array( 'slug' => 'type' ), // свой слаг в URL
-                'show_admin_column' => true,
-            ));
-
-            // Добавляем НЕ древовидную таксономию 'writer' (как метки)
-            register_taxonomy('teacher', 'magazine',array(
-                'hierarchical'  => false,
-                'labels'        => array(
-                    'name'                        => _x( 'Teacher', 'taxonomy general name', 'worldmonitor' ),
-                    'singular_name'               => _x( 'Teacher', 'taxonomy singular name', 'worldmonitor' ),
-                    'search_items'                =>  __( 'Search Teachers', 'worldmonitor' ),
-                    'popular_items'               => __( 'Popular Teachers', 'worldmonitor' ),
-                    'all_items'                   => __( 'All Teachers', 'worldmonitor' ),
-                    'parent_item'                 => null,
-                    'parent_item_colon'           => null,
-                    'edit_item'                   => __( 'Edit Teacher', 'worldmonitor' ),
-                    'update_item'                 => __( 'Update Teacher', 'worldmonitor' ),
-                    'add_new_item'                => __( 'Add New Teacher', 'worldmonitor' ),
-                    'new_item_name'               => __( 'New Teacher Name', 'worldmonitor' ),
-                    'separate_items_with_commas'  => __( 'Separate Teacher with commas', 'worldmonitor' ),
-                    'add_or_remove_items'         => __( 'Add or remove teacher', 'worldmonitor' ),
-                    'choose_from_most_used'       => __( 'Choose from the most used teachers', 'worldmonitor' ),
-                    'menu_name'                   => __( 'Teachers', 'worldmonitor' ),
-                ),
-                'show_ui'       => true,
-                'query_var'     => true,
-                'rewrite'       => array( 'slug' => 'teacher' ), // свой слаг в URL
-                'show_admin_column' => true,
-            ));
-            // Добавляем древовидную таксономию 'genre' (как категории)
+        // регистрация нового типа записей Партнеры
+        add_action( 'init', 'register_partners_post_types' );
+        function register_partners_post_types(){
+            register_post_type( 'partners', [
+                'label'  => null,
+                'labels' => [
+                    'name'               => __( 'Партнеры', 'worldmonitor' ), // основное название для типа записи
+                    'singular_name'      => __( 'Партнеры', 'worldmonitor' ), // название для одной записи этого типа
+                    'add_new'            => __( 'Добавить Партнера', 'worldmonitor' ), // для добавления новой записи
+                    'add_new_item'       => __( 'Добавление Партнера', 'worldmonitor' ), // заголовка у вновь создаваемой записи в админ-панели.
+                    'edit_item'          => __( 'Редактировать Партнера', 'worldmonitor' ), // для редактирования типа записи
+                    'new_item'           => __( 'Новый Партнер', 'worldmonitor' ), // текст новой записи
+                    'view_item'          => __( 'Посмотреть Партнера', 'worldmonitor' ), // для просмотра записи этого типа.
+                    'search_items'       => __( 'Искать Партнера', 'worldmonitor' ), // для поиска по этим типам записи
+                    'not_found'          => __( 'Не найдено', 'worldmonitor' ), // если в результате поиска ничего не было найдено
+                    'not_found_in_trash' => __( 'Не найдено в корзине', 'worldmonitor' ), // если не было найдено в корзине
+                    'parent_item_colon'  => '', // для родителей (у древовидных типов)
+                    'menu_name'          => __( 'Партнеры', 'worldmonitor' ), // название меню
+                ],
+                'description'         => __( 'Вкладка парнеры', 'worldmonitor' ),
+                'public'              => true,
+                'show_admin_column'   => true,
+                // 'publicly_queryable'  => null, // зависит от public
+                // 'exclude_from_search' => null, // зависит от public
+                // 'show_ui'             => null, // зависит от public
+                // 'show_in_nav_menus'   => null, // зависит от public
+                'show_in_menu'        => true, // показывать ли в меню адмнки
+                // 'show_in_admin_bar'   => null, // зависит от show_in_menu
+                'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+                'rest_base'           => null, // $post_type. C WP 4.7
+                'menu_position'       => 6,
+                'menu_icon'           => 'dashicons-admin-site-alt',
+                'capability_type'   => 'post',
+                //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+                //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+                'hierarchical'        => false,
+                'supports'            => [ 'title', 'editor', 'thumbnail', 'custom-fields', 'excerpt', 'custom-fields', 'author' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+                'taxonomies'          => [''],
+                'has_archive'         => true,
+                'rewrite'             => true,
+                'query_var'           => true,
+            ] );
         }
 	}
 endif;

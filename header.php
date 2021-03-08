@@ -68,23 +68,23 @@
 
             <div class="header__interface--right">
                 <div class="header__social">
-                    <a href="#" class="header__social--item social__item--linkedin">
+                    <a href="<?php the_field('link_linkedin', 179)?>" class="header__social--item social__item--linkedin">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="header__social--item social__item--facebook">
+                    <a href="<?php the_field('link_facebook', 179)?>" class="header__social--item social__item--facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="header__social--item social__item--instagram">
+                    <a href="<?php the_field('link_instagram', 179)?>" class="header__social--item social__item--instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="header__social--item social__item--telegram">
+                    <a href="<?php the_field('link_telegram', 179)?>" class="header__social--item social__item--telegram">
                         <i class="fab fa-telegram-plane"></i>
                     </a>
                 </div>
 
                 <div class="header__subscription">
                         <span class="header__subscription--text">
-                            подписаться
+                            <?php the_field('text_sub', 179)?>
                         </span>
                     <span class="header__subscription--image">
                             <svg class="subscription__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
