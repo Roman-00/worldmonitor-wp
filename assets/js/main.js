@@ -2,28 +2,34 @@ document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     const contacts = document.querySelector('.contacts');
+    // Раскрытие search box
 
-    // Функция котора отвечает за скрытие и показ поиска
-    const searchFunc = () => {
-        const headerSearchBox = document.querySelector('.header__search--box'), 
-            headerSearchBtn = document.querySelector('.header__search--btn'),
-            headerSearchCancel = document.querySelector('.header__search--cancel'),
-            headerSearchInput = document.querySelector('.header__search--input'); 
+    const searchBtn = document.querySelector('.search-btn');
+    const cancelBtn = document.querySelector('.cancel-btn');
+    const searchBox = document.querySelector('.search-box');
+    const searchInput = document.querySelector('.search-box input');
+    const searchBtnBtn = document.querySelector('.search-btn-btn');
 
-            headerSearchBtn.addEventListener('click', () => {
-                headerSearchBox.classList.add('header__search--box-active');
-                headerSearchInput.classList.add('header__search--input-active');
-                headerSearchBtn.classList.add('header__search--btn-active');
-                headerSearchCancel.style.display = 'block';
-            });
 
-            headerSearchCancel.addEventListener('click', () => {
-                headerSearchBox.classList.remove('header__search--box-active');
-                headerSearchInput.classList.remove('header__search--input-active');
-                headerSearchBtn.classList.remove('header__search--btn-active');
-                headerSearchCancel.style.display = 'none';
-            });
-    };
+    searchBtnBtn.addEventListener('click', () => {
+        searchInput.style.display = 'block';
+        searchBtn.style.display = 'flex';
+        searchBtnBtn.style.display = 'none';
+        cancelBtn.style.display = 'block';
+        searchBox.classList.add('active-box');
+        searchInput.classList.add('active-s-i');
+        searchBtn.classList.add('active-s-b');
+    });
+    cancelBtn.addEventListener('click', () => {
+        searchBox.classList.remove('active-box');
+        searchInput.classList.remove('active-s-i');
+        searchBtn.classList.remove('active-s-b');
+        searchBtnBtn.style.display = 'block';
+        searchInput.style.display = 'none';
+        searchBtn.style.display = 'none';
+        cancelBtn.style.display = 'none';
+        searchInput.value = '';
+    });
 
     const swiper = new Swiper('.swiper-container', {
         // Optional parameters

@@ -32,15 +32,6 @@
 
                 <div class="header__search">
                     <?php echo get_search_form(); ?>
-                    <!-- div class="header__search--box">
-                        <input type="text" placeholder="Введите для поиска ..." class="header__search--input">
-                        <div class="header__search--btn">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="header__search--cancel">
-                            <i class="fas fa-times"></i>
-                        </div>
-                    </div -->
                 </div>
             </div>
 

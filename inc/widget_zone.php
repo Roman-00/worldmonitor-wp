@@ -22,6 +22,18 @@ function worldmonitor_theme_widgets_init() {
     // ф-ия регистрирует зоны под виджеты
     register_sidebar(
         array(
+            'name'          => esc_html__( 'Sidebar in detail page bottom', 'worldmonitor' ),
+            'id'            => 'page-sidebar-bottom',
+            'description'   => esc_html__( 'Add widget here', 'worldmonitor' ),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
+    // ф-ия регистрирует зоны под виджеты
+    register_sidebar(
+        array(
             'name'          => esc_html__( 'Sidebar with top', 'worldmonitor' ),
             'id'            => 'top-sidebar',
             'description'   => esc_html__( 'Add widget here', 'worldmonitor' ),

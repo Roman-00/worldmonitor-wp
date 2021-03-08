@@ -970,7 +970,7 @@ template {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 320px;
+  width: 290px;
   height: 420px; }
 
 .aside-ad {
@@ -1011,7 +1011,7 @@ template {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 45px;
+  padding: 10px 15px;
   border: 2px solid #000055;
   border-radius: 10px; }
   .website__image {
@@ -1159,8 +1159,14 @@ template {
   .news__title {
     margin-bottom: 20px;
     font-weight: bold;
-    font-size: 40px;
-    line-height: 48px; }
+    font-size: 16px;
+    line-height: 19px;
+    background-color: #000055;
+    padding: 8px 43px;
+    border-radius: 10px;}
+  .news__title a {
+    color: #fff !important;
+  }
   .news__block {
     max-width: calc( 100% - 15px); }
 
@@ -1470,6 +1476,9 @@ template {
       font-weight: bold;
       font-size: 16px;
       line-height: 19px; }
+    .detail__tag--name-text a {
+      color: #fff !important;
+    }
   .detail__wrap--content {
     display: flex;
     justify-content: space-between;

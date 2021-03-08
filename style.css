@@ -1051,3 +1051,187 @@ textarea {
 	border-bottom: 2px solid #DADEE1;
 	color: #000;
 }
+.search-box {
+	position: relative;
+	width: 60px;
+	height: 45px;
+	transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.search-box.active-box {
+	width: 350px;
+}
+
+.search-box input {
+	height: 100%;
+	width: 100%;
+	border: 2px solid #000055;
+	border-radius: 50px;
+	padding: 0 60px 0 20px;
+	outline: none;
+	display: none;
+}
+
+.search-box .search-btn {
+	position: absolute;
+	top: 50%;
+	right: 1px;
+	width: 45px;
+	height: 45px;
+	background: #000055;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 50px;
+	line-height: 50px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+.search-box .search-btn-btn {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000;
+	font-size: 16px;
+	text-align: center;
+	border-radius: 50px;
+	line-height: 50px;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.search-box .cancel-btn {
+	position: absolute;
+	top: 50%;
+	right: -40px;
+	display: none;
+	transform: translateY(-50%);
+	color: #000;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.detail__block--social .meks_ess {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+.detail__block--social .meks_ess a {
+	display: block;
+	font-size: 22px;
+	margin-right: 0 !important;
+}
+
+.meks_ess.transparent a {
+	margin-right: 0 !important;
+	margin-top: 0 !important;
+	margin-bottom: 35px !important;
+	font-size: 18px !important;
+}
+
+/* Комментарии */
+
+#comments {
+	margin: 0 370px 30px 105px;
+}
+
+.comments-title {
+	margin-bottom: 20px;
+}
+
+.comments-add-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 20px;
+	border: 2px solid #000055;
+	border-radius: 10px;
+	max-width: 250px;
+}
+
+.comments-add-button svg {
+	margin-right: 20px;
+}
+
+.comments-list {
+	padding: 30px 0;
+	border-top: 2px solid #000055;
+	border-bottom: 2px solid #000055;
+}
+
+.comments-list .comment {
+	margin-top: 20px;
+}
+
+.comments-list .comment .comment-body {
+	display: flex;
+	align-items: center;
+}
+
+.comments-list .comment .comment-body .comment-author-avatar img {
+	border-radius: 100px;
+	border: 1px solid #000055;
+}
+
+.comments-list .comment .comment-body .comment-content {
+	margin-left: 30px;
+}
+
+.comment-form-comment {
+	position: relative;
+	margin-top: 20px;
+}
+
+.comment-form-comment .comment-label {
+	position: absolute;
+	top: 15%;
+	left: 100px;
+	transform: translateY(-50%);
+	font-size: 25px;
+	font-width: bold;
+}
+
+.comment-form-comment .comment-wrapper img {
+	border-radius: 100px;
+	border: 1px solid #000055;
+}
+
+.comment-form-comment .comment-wrapper .comment-textarea-wrapper .comment-textarea {
+	max-width: 400px;
+	height: 150px;
+	margin-top: 20px;
+	border: 2px solid #000055;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.comment-respond .comment-form .form-submit .comment-submit {
+	max-width: 180px;
+	padding: 10px 20px;
+	border: 2px solid #000055;
+	box-sizing: border-box;
+	border-radius: 10px;
+	background: transparent;
+	transition: .2s ease;
+	color: #000;
+	cursor: pointer;
+}
+
+.comment-respond .comment-form .form-submit .comment-submit:hover {
+	background: #000055;
+	color: #fff !important;
+}
+
+/* Комментарии */
+
