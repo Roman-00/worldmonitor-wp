@@ -176,4 +176,68 @@ if ( post_password_required() ) {
         ?>
 
     </div><!-- #comments -->
+    <div class="you__maylike--article">
+
+        <h3 class="you__maylike--article--title">
+            Вам может понравиться!
+        </h3>
+
+        <div class="you__maylike--article--container">
+
+            <?php
+                //обьявляем глобальную переменную
+                global $post;
+                //параметры вывода постов
+                $myposts = get_posts([
+                    'numberposts' => 3,
+                    'category_name' => 'news',
+                ]);
+
+                // Проверяем есть ли посты
+                if( $myposts ) {
+                    //если есть, запускаем цикл для перебора
+                    foreach ( $myposts as $post ) {
+                        setup_postdata( $post );
+                        ?>
+                        <a href="<?php echo the_permalink() ?>">
+                            <article class="you__maylike--article--card">
+                                    <figure class="you__mylike--article--image">
+                                        <img src="<?php if( has_post_thumbnail() ) {
+                                            echo get_the_post_thumbnail_url();
+                                        } else {
+                                            echo get_template_directory_uri().'./assets/images/image-default.png';
+                                        } ?>" alt="">
+                                    </figure>
+
+                                    <div class="you__maylike--article--content">
+                                        <a href="#" class="you__maylike--article--tag-p">
+                                            <?php $category = get_the_category(); echo $category[0]->name; ?>
+                                        </a>
+
+                                        <h3 class="you__maylike--article--title--text">
+                                            <?php echo mb_strimwidth(get_the_title(), 0, 60, '...') ?>
+                                        </h3>
+
+                                        <p class="you__maylike--article--excerpt">
+                                            <?php echo mb_strimwidth(get_the_excerpt(), 0, 90, '...'); ?>
+                                        </p>
+
+                                        <span class="you__maylike--article--date">
+                                          <?php the_time('j F, H:i'); ?>
+                                        </span>
+                                    </div>
+                            </article>
+                        </a>
+                    <?php
+                    }
+                } else {
+                    // Постов не найдено
+                    ?> <p><?php _e('No posts', 'universal')?></p> <?php
+                }
+                wp_reset_postdata(); // Сбрасываем $post
+            ?>
+
+        </div>
+
+    </div>
 </div>

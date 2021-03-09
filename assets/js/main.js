@@ -82,10 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
     /* Инициализируем все функции скриптов */
     const init = () => {
-        searchFunc();
         yaMaps();
     };
 
@@ -141,6 +139,10 @@ $(document).ready(function () {
             e.preventDefault();
         }
     });
+
+    if($('#menu-header_menu .menu-item a').siblings().hasClass('sub-menu')) {
+        $('#menu-header_menu .menu-item-has-children').addClass('arr');
+    }
 
 
     $(document).on('click', function(e) {

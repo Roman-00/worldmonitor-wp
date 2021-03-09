@@ -274,6 +274,17 @@ require get_template_directory() . '/inc/widget_zone.php';
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
+ * Вывод виджета соц сети
+*/
+require get_template_directory() . '/inc/social-widget.php';
+
+/**
+ * Виджет повторного вывода постов
+ */
+
+require get_template_directory() . '/inc/resent-post-widjet.php';
+
+/**
  * "Хлебные крошки" для WordPress
  * автор: Dimox
  * версия: 2019.03.03

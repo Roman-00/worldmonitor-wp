@@ -115,14 +115,13 @@
 
                             <div class="detail__post--comment-info">
                                 <?php get_sidebar('page-bottom'); ?>
-
-
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
+            <?php get_sidebar('page')?>
         </div>
     </div>
 
