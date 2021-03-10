@@ -1159,9 +1159,8 @@ template {
   .news__title {
     margin-bottom: 20px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 25px;
     line-height: 19px;
-    background-color: #000055;
     padding: 8px 43px;
     border-radius: 10px;}
   .news__title a {
@@ -1194,6 +1193,7 @@ template {
 .article__image {
   margin: 0;
   padding: 0;
+  height: 260px;
   overflow: hidden; }
   .article__image img {
     max-width: 100%;
@@ -1784,11 +1784,11 @@ template {
     align-items: center;
     justify-content: center;
     padding: 12px 15px;
-    color: #fff;
+    color: #fff !important;
     background: #000055;
     border-radius: 100px; }
     .archive__article--link:hover {
-      color: #fff; }
+      color: #fff !important; }
 
 .sidebar__archive--page {
   width: 320px; }

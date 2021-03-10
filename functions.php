@@ -63,7 +63,7 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
         add_theme_support('title-tag');
 
         // Добавляем возможность делать миниатюры изобраджений для статей
-        add_theme_support('post-thumbnails', array('post', 'magazine', 'partners'));
+        add_theme_support('post-thumbnails', array('post', 'magazine', 'partners', 'all_magazine'));
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -200,6 +200,50 @@ if ( ! function_exists( 'worldmonitor_setup' ) ) :
                 'query_var'           => true,
             ] );
         }
+
+        // регистрация нового типа записей Партнеры
+        add_action( 'init', 'register_all_magazine_post_types' );
+        function register_all_magazine_post_types(){
+            register_post_type( 'all_magazine', [
+                'label'  => null,
+                'labels' => [
+                    'name'               => __( 'Архив Журналов', 'worldmonitor' ), // основное название для типа записи
+                    'singular_name'      => __( 'Архив Журналов', 'worldmonitor' ), // название для одной записи этого типа
+                    'add_new'            => __( 'Добавить в Архив Журналов', 'worldmonitor' ), // для добавления новой записи
+                    'add_new_item'       => __( 'Добавление Журнала в Архив', 'worldmonitor' ), // заголовка у вновь создаваемой записи в админ-панели.
+                    'edit_item'          => __( 'Редактировать Архив Журналов', 'worldmonitor' ), // для редактирования типа записи
+                    'new_item'           => __( 'Новый Журнал в Архив', 'worldmonitor' ), // текст новой записи
+                    'view_item'          => __( 'Посмотреть Журнал в Архиве', 'worldmonitor' ), // для просмотра записи этого типа.
+                    'search_items'       => __( 'Искать Журнал в Архиве', 'worldmonitor' ), // для поиска по этим типам записи
+                    'not_found'          => __( 'Не найдено', 'worldmonitor' ), // если в результате поиска ничего не было найдено
+                    'not_found_in_trash' => __( 'Не найдено в корзине', 'worldmonitor' ), // если не было найдено в корзине
+                    'parent_item_colon'  => '', // для родителей (у древовидных типов)
+                    'menu_name'          => __( 'Архив Журналов', 'worldmonitor' ), // название меню
+                ],
+                'description'         => __( 'Архив Журналов', 'worldmonitor' ),
+                'public'              => true,
+                'show_admin_column'   => true,
+                // 'publicly_queryable'  => null, // зависит от public
+                // 'exclude_from_search' => null, // зависит от public
+                // 'show_ui'             => null, // зависит от public
+                // 'show_in_nav_menus'   => null, // зависит от public
+                'show_in_menu'        => true, // показывать ли в меню адмнки
+                // 'show_in_admin_bar'   => null, // зависит от show_in_menu
+                'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+                'rest_base'           => null, // $post_type. C WP 4.7
+                'menu_position'       => 7,
+                'menu_icon'           => 'dashicons-portfolio',
+                'capability_type'   => 'post',
+                //'capabilities'      => 'post', // массив дополнительных прав для этого типа записи
+                //'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
+                'hierarchical'        => false,
+                'supports'            => [ 'title', 'editor', 'thumbnail', 'custom-fields', 'excerpt', 'custom-fields', 'author' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+                'taxonomies'          => [''],
+                'has_archive'         => true,
+                'rewrite'             => true,
+                'query_var'           => true,
+            ] );
+        }
 	}
 endif;
 add_action( 'after_setup_theme', 'worldmonitor_setup' );
@@ -209,6 +253,7 @@ add_action( 'after_setup_theme', 'worldmonitor_setup' );
  */
 function worldmonitor_scripts() {
 	wp_enqueue_style( 'worldmonitor-style', get_stylesheet_uri(), array(), _S_VERSION );
+    wp_enqueue_style( 'worldmonitor-animate', get_template_directory_uri() . '/assets/css/animate.css');
     wp_enqueue_style( 'worldmonitor-awesome', get_template_directory_uri() . '/assets/plugin/fontAwesome/all.css');
     wp_enqueue_style( 'worldmonitor-swiper', get_template_directory_uri() . '/assets/plugin/swiper/swiper-bundle.min.css');
     wp_enqueue_style( 'worldmonitor-theme', get_template_directory_uri() . '/assets/css/style.css');

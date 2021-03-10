@@ -82,8 +82,71 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const modalShow = () => {
+        const home = document.querySelector('.home');
+        const showModal = document.querySelector('.modal_show');
+        const modalShowNo = document.querySelector('.modal_show-no');
+
+        showModal.style.opacity = '0';
+        showModal.classList.add('animated');
+        if(home) {
+            setTimeout(() => {
+                showModal.style.opacity = '1';
+                showModal.classList.add('fadeInDown');
+            }, 5000);
+        } else {
+            showModal.classList.remove('fadeInDown');
+        }
+
+        modalShowNo.addEventListener('click', () => {
+            showModal.style.opacity = '0';
+            showModal.classList.remove('fadeInDown');
+        });
+
+    }
+
+    const togglePopUp = () => {
+        const popup = document.querySelector('.popup'),
+            popupContent = document.querySelector('.popup-content'),
+            popupBtn = document.querySelectorAll('.popup-btn');
+
+        popupBtn.forEach(item => {
+            item.addEventListener('click', () => popup.style.display = 'block');
+            popup.classList.add('fadeInDown');
+        })
+
+        popup.addEventListener('click', (e) => {
+            let target = e.target;
+            if(target.classList.contains('popup-close')) {
+                popup.style.display = 'none';
+                popup.classList.remove('fadeInDown');
+            } else {
+                target = target.closest('.popup-content');
+                if(!target) {
+                    popup.style.display = 'none';
+                    popup.classList.remove('fadeInDown');
+                }
+            }
+        });
+    }
+
+    const formRemove = () => {
+        const form = document.getElementById('form3');
+        let popupFormInput = document.querySelectorAll('.popup_form-input').value();
+        const formBtn = document.querySelector('.form-btn');
+
+        if(formBtn.clicked == true) {
+            popupFormInput.value = '';
+        } else {
+            return;
+        }
+    }
+
     /* Инициализируем все функции скриптов */
     const init = () => {
+        modalShow();
+        togglePopUp();
+        formRemove();
         yaMaps();
     };
 

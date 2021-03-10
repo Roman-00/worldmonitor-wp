@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="header__subscription">
-                        <span class="header__subscription--text">
+                        <span class="header__subscription--text popup-btn">
                             <?php the_field('text_sub', 179)?>
                         </span>
                     <span class="header__subscription--image">

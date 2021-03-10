@@ -350,106 +350,61 @@
                     </div>
 
                     <h2 class="article__grid--mb-title">
-                        Новости
+                        <?php the_field('name_title_mob_text', 179)?>
                     </h2>
 
                     <div class="article__card--mb--news">
-                        <div class="article__card--item-mb">
-                            <a href="detail.html" class="article__card--permalink-mb">
-                                <div class="article__card--mb-content">
-                                    <h2 class="article__card--mb-title">
-                                        What is Lorem Ipsum?
-                                    </h2>
-                                    <p class="article__card--mb-except">
-                                        Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.
-                                    </p>
-                                    <div class="article__card--grid--info">
+                        <?php
+                            // Обьявляем глобальную переменную
+                            global $post;
+                            // параметры вывода постов
+                            $myposts = get_posts([
+                                'numberposts' => 3,
+                                'category_name'    => 'news',
+                            ]);
+                            // проверяем, есть ли посты?
+                            if( $myposts ) {
+                                foreach( $myposts as $post ) {
+                                    setup_postdata( $post );
+                                    ?>
+                                    <div class="article__card--item-mb">
+                                        <a href="<?php echo get_author_posts_url($author_id);?>" class="article__card--permalink-mb">
+                                            <div class="article__card--mb-content">
+                                                <h2 class="article__card--mb-title">
+                                                    <?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?>
+                                                </h2>
+                                                <p class="article__card--mb-except">
+                                                    <?php echo mb_strimwidth(get_the_excerpt(), 0, 40, '...'); ?>
+                                                </p>
+                                                <div class="article__card--grid--info">
 
-                                        <div class="article__card--author--mb">
-                                          <span class="article__card--author--author">
-                                            <strong>Инна Квашова</strong>
-                                          </span>
-                                        </div>
+                                                    <div class="article__card--author--mb">
+                                                  <span class="article__card--author--author">
+                                                    <strong><?php the_author(); ?></strong>
+                                                  </span>
+                                                    </div>
 
-                                        <div class="view">
-                                            <i class="far fa-eye"></i>
-                                            <span class="view__count">
-                                                365
-                                            </span>
-                                        </div>
+                                                    <div class="view">
+                                                        <i class="far fa-eye"></i>
+                                                        <span class="view__count">
+                                                        <?php echo get_post_meta( $post->ID, 'views', true ); ?>
+                                                    </span>
+                                                    </div>
 
-                                        <div class="favorite">
-                                            <i class="far fa-heart"></i>
-                                        </div>
+                                                    <!-- div class="favorite">
+                                                        <i class="far fa-heart"></i>
+                                                    </div -->
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="article__card--item-mb">
-                            <a href="detail.html" class="article__card--permalink-mb">
-                                <div class="article__card--mb-content">
-                                    <h2 class="article__card--mb-title">
-                                        What is Lorem Ipsum?
-                                    </h2>
-                                    <p class="article__card--mb-except">
-                                        Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.
-                                    </p>
-                                    <div class="article__card--grid--info">
-
-                                        <div class="article__card--author--mb">
-                          <span class="article__card--author--author">
-                            <strong>Инна Квашова</strong>
-                          </span>
-                                        </div>
-
-                                        <div class="view">
-                                            <i class="far fa-eye"></i>
-                                            <span class="view__count">
-                            365
-                          </span>
-                                        </div>
-
-                                        <div class="favorite">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="article__card--item-mb">
-                            <a href="detail.html" class="article__card--permalink-mb">
-                                <div class="article__card--mb-content">
-                                    <h2 class="article__card--mb-title">
-                                        What is Lorem Ipsum?
-                                    </h2>
-                                    <p class="article__card--mb-except">
-                                        Lorem Ipsum is simply dummy text of the
-                                        printing and typesetting industry.
-                                    </p>
-                                    <div class="article__card--grid--info">
-
-                                        <div class="article__card--author--mb">
-                          <span class="article__card--author--author">
-                            <strong>Инна Квашова</strong>
-                          </span>
-                                        </div>
-
-                                        <div class="view">
-                                            <i class="far fa-eye"></i>
-                                            <span class="view__count">
-                            365
-                          </span>
-                                        </div>
-
-                                        <div class="favorite">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                <?php }
+                            } else {
+                                // Постов не найдено
+                                ?> <p><?php _e('No posts', 'universal')?></p> <?php
+                            }
+                            wp_reset_postdata(); // Сбрасываем $post
+                        ?>
                     </div>
 
                 </div>
@@ -529,6 +484,63 @@
         </div>
 
     </section>
+
+    <div class="modal_show">
+        <div class="modal_show-dialog">
+            <div class="modal_show-text">
+                <img src="<?php echo get_template_directory_uri() . '/assets/img/w.png' ?>" alt="Первая буква лого" class="modal_show-thumb">
+                <p class="modal_show-question">
+                    Хотите получать только актуальную информацию от worldmonitor.kz?
+                </p>
+            </div>
+            <div class="modal_show-interface">
+                <button class="modal_show-no">Нет, спасибо</button>
+                <button class="modal_show-yes popup-btn">Да, конечно</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="popup-content">
+            <button class="popup-close">&times;</button>
+            <div class="main-form">
+                <h3>Введите свои данные для связи с нами!</h3>
+                <form id="form3" name="user_form" action="<?php echo get_template_directory_uri() . '/assets/php/send.php'?>" method="POST">
+                    <div class="input-group popup_input-group">
+                        <label for="form3-name">Имя:</label>
+                        <input type="text" class="form-name popup_form-input" id="form3-name" name="user_name" placeholder="Как вас зовут:"
+                               required>
+                    </div>
+                    <div class="input-group popup_input-group">
+                        <label for="form3-surname">Фамилия:</label>
+                        <input type="text" class="form-surname popup_form-input" id="form3-surname" name="user_surname" placeholder="Ваша Фамилия:"
+                               required>
+                    </div>
+                    <div class="input-group popup_input-group">
+                        <label for="form3-company">Компания</label>
+                        <input type="text" class="form-company popup_form-input" id="form3-company" name="user_company" placeholder="Название вашей компании:"
+                               required>
+                    </div>
+                    <div class="input-group popup_input-group">
+                        <label for="form3-place">Должность</label>
+                        <input type="text" class="form-place popup_form-input" id="form3-place" name="user_place" placeholder="Ваша должность:"
+                               required>
+                    </div>
+                    <div class="input-group popup_input-group">
+                        <label for="form3-phone">Телефон</label>
+                        <input type="tel" class="form-phone popup_form-input" id="form3-phone" name="user_phone"
+                               placeholder="Ваш телефон:" required>
+                    </div>
+                    <div class="input-group popup_input-group">
+                        <label for="form3-email">Email</label>
+                        <input type="email" class="form-email popup_form-input" id="form3-email" name="user_email"
+                               placeholder="Ваш E-mail">
+                    </div>
+                    <button class="btn form-btn" id="submit" type="submit">Оставить заявку!</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </main>
 
